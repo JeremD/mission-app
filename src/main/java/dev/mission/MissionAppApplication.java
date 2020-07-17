@@ -18,7 +18,6 @@ public class MissionAppApplication {
 		
 		// exécution
 		exec.run();
-		
 	}
 
 }
