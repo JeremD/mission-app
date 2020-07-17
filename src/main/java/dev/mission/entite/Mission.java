@@ -1,6 +1,7 @@
 package dev.mission.entite;
 
 import java.math.BigDecimal;
+
 import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,17 +9,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author Jeremy
+ *
+ */
 @Entity
 @Table(name = "mission")
 
 public class Mission {
 
+	/** id */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	/** libelle */
 	private String libelle;
+	
+	/** dateDebut */
 	private LocalDate dateDebut;
+	
+	/** dateFin */
 	private LocalDate dateFin;
+	
+	/** tauxJournalier */
 	private BigDecimal tauxJournalier;
 
 	/**
