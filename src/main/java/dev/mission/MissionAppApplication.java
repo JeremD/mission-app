@@ -11,13 +11,15 @@ public class MissionAppApplication {
 
 		// Récupération du contexte Spring créé par Spring Boot
 		// La classe de configuration initiale de Spring est MissionAppApplication
-		ConfigurableApplicationContext context = SpringApplication.run(MissionAppApplication.class, args);
-		
-		// Récupération d'un bean de type Runnable
-		Runnable exec = context.getBean(Runnable.class);
-		
-		// exécution
-		exec.run();
+		try (ConfigurableApplicationContext context = SpringApplication.run(MissionAppApplication.class, args)) {
+
+			// Récupération d'un bean de type Runnable
+			Runnable exec = context.getBean(Runnable.class);
+
+			// exécution
+			exec.run();
+		}
+
 	}
 
 }
