@@ -25,19 +25,27 @@ class MissionRepositoryTests {
 	@Test
 	void findByDateDebutGreaterThanEqual() {
 		
-		// TODO insérer des données avec `entityManager`
+		// Insertion des données avec `entityManager`
 		Mission mission = new Mission();
-		mission.setLibelle("Mission 6");
-		mission.setTauxJournalier(new BigDecimal("100.90"));
-		mission.setDateDebut(LocalDate.of(2019, 1, 1));
-		mission.setDateFin(LocalDate.of(2019, 3, 4));
+		mission.setLibelle("Mission 2");
+		mission.setTauxJournalier(new BigDecimal("55.80"));
+		mission.setDateDebut(LocalDate.of(2020, 8, 4));
+		mission.setDateFin(LocalDate.of(2020, 8, 29));
 		
-		// TODO exécuter la requête
+		Mission mission2 = new Mission();
+		mission2.setLibelle("Mission 3");
+		mission2.setTauxJournalier(new BigDecimal("69"));
+		mission2.setDateDebut(LocalDate.of(2020, 8, 1));
+		mission2.setDateFin(LocalDate.of(2020, 8, 18));
+		
+		// Exécution de la requête
 		entityManager.persist(mission);
+		entityManager.persist(mission2);
 		
-		// TODO vérifier le résultat
-		List<Mission> resultat = missionRepository.findAll();
-		assertThat(resultat).hasSize(1);
+		// Vérification du résultat
+		// Récupération du libelle depuis la liste de mission 
+		List<Mission> resultat = missionRepository.findByDateDebutGreaterThanEqual(LocalDate.of(2020, 8, 3));
+		assertThat(resultat).extracting(Mission::getLibelle).contains("Mission 2");
 		
 	}
 

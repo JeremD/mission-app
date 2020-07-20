@@ -1,6 +1,7 @@
 package dev.mission.repository;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,5 +15,8 @@ public interface MissionRepository extends JpaRepository<Mission, Integer> {
 	// Lister les prochaines missions filtrées par taux journalier
 	@Query("select m from Mission m where m.dateDebut >= CURDATE() and m.tauxJournalier >= ?1")
 	List<Mission> findByDateDebutWithTJM(BigDecimal jtm);
+	
+	@Query("select m from Mission m where m.dateDebut > ?1")
+	List<Mission> findByDateDebutGreaterThanEqual(LocalDate dateDebut);
 	
 }
